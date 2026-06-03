@@ -1,0 +1,11 @@
+release/ball.o
+release/coin.o
+release/endline.o
+release/gameview.o
+release/main.o
+release/mainmenu.o
+release/mydialog.o
+release/platform.o
+release/moc_gameview.o
+release/moc_mainmenu.o
+release/moc_mydialog.o
