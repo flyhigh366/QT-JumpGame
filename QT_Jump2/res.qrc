@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/new/prefix2">
+        <file>background.jpg</file>
+        <file>button.png</file>
+        <file>background2.png</file>
+        <file>hover.png</file>
+    </qresource>
+</RCC>
