@@ -7,39 +7,42 @@ Platform::Platform(): QGraphicsRectItem(),_is_last(false)
     setRect(0, 0, 120, 20);
     setPen(QPen(Qt::black));
 }
+bool Platform::islast(){
 
-NormalPlatform::NormalPlatform() : Platform()
-{
-    // 普通平台只需设置颜色即可，isSpike 默认返回 false（继承自基类）
-    setBrush(QColor(50, 205, 50)); // 绿色
+    return _is_last;
+}
+void Platform::setislast(bool is_or_no){
+    _is_last=is_or_no;
+    return;
+}
+void Platform::resettype(){
+    return;
+}
+bool Platform::isSpike(){
+    return false;
 }
 
-// ==========================================
-// 派生类 SpikePlatform 实现
-// ==========================================
-SpikePlatform::SpikePlatform() : Platform()
+
+NormalPlatform::NormalPlatform():isspike(false)
 {
-    // 尖刺平台初始化颜色，m_isSpike 默认值已经在头文件中设为 true
+    setBrush(QColor(50, 205, 50)); // green色
+}
+bool NormalPlatform::isSpike(){
+    return isspike;
+}
+void NormalPlatform::resettype(){
+    return;
+}
+
+SpikePlatform::SpikePlatform():isspike(true)
+{
     setBrush(QColor(200, 80, 80)); // 红色
 }
-
-
+bool SpikePlatform::isSpike(){
+    return isspike;
+}
 void SpikePlatform::resettype(){
-    m_isSpike=false;
+    isspike=false;
     setBrush(QColor(80, 200, 80));
-}
-
-
-SuperPlatform::SuperPlatform() : Platform()
-{
-    setBrush(QColor(50, 50, 255)); // 弹簧板设置为蓝色
-}
-
-FragilePlatform::FragilePlatform() : Platform()
-{
-    setBrush(QColor(150, 150, 150)); // 易碎板设置为灰色
-    // 可以给易碎板加个虚线边框，看起来更不结实
-    QPen p(Qt::black);
-    p.setStyle(Qt::DashLine);
-    setPen(p);
+    return;
 }

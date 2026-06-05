@@ -1,9 +1,8 @@
 #include "ball.h"
 #include <QBrush>
 #include <QColor>
-#include <QGraphicsScene> // 用于获取场景边界
 
-Ball::Ball(QGraphicsItem *parent) : QGraphicsEllipseItem(parent)
+Ball::Ball()
 {
     setRect(0, 0, 30, 30);
     setBrush(QColor(255, 50, 50));
@@ -16,12 +15,12 @@ Ball::Ball(QGraphicsItem *parent) : QGraphicsEllipseItem(parent)
 
 void Ball::moveLeft()
 {
-    m_vx = -MOVE_SPEED;
+    m_vx = -10;
 }
 
 void Ball::moveRight()
 {
-    m_vx = MOVE_SPEED;
+    m_vx = 10;
 }
 
 void Ball::stopMove()
@@ -38,27 +37,19 @@ void Ball::updatePhysics()
     moveBy(m_vx, 0);
 
     moveBy(0, m_vy);
-    m_vy += GRAVITY;
-
-    //限制最大下落速度
-    if (m_vy > MAX_FALL_SPEED) {
-        m_vy = MAX_FALL_SPEED;
-    }
+    m_vy += 0.25;
 
     // 边界限制
-    qreal rightBound = 1000.0; // 如果加入了场景，可以用 scene()->width() 替代
-    if (x() < 0) {
+    if (x() < 0)
         setX(0);
-    } else if (x() > rightBound - boundingRect().width()) {
-        setX(rightBound - boundingRect().width());
-    }
+    if (x() > 1000 - boundingRect().width())
+        setX(1000 - boundingRect().width());
 }
 
 // 跳跃：初始向上速度（刚好跳150高度）
-void Ball::jump(qreal bounceMultiplier)
+void Ball::jump()
 {
-    // 如果是双倍弹跳，bounceMultiplier 传 1.5 或 2.0
-    m_vy = JUMP_VELOCITY * bounceMultiplier;
+    m_vy = -10; // 匀减速跳 150 像素高度
 }
 
 void Ball::decreaseHp()

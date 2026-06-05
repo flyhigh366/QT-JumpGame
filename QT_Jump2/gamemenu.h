@@ -18,9 +18,6 @@ public:
     void Showme();
 
 
-private slots:
-    void on_button_scoresheet_clicked();
-
 private:
     Ui::Dialog *ui;
 
