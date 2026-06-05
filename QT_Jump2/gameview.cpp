@@ -11,6 +11,7 @@
 #include <cmath>
 #include <QPair>
 #include <algorithm>
+#include <QSettings>
 
 gameview::gameview(QWidget *parent)
     : QDialog(parent)
@@ -35,8 +36,13 @@ gameview::gameview(QWidget *parent)
     m_scene->setBackgroundBrush(Qt::transparent);
 
     m_ball = new Ball();
-    m_ball->setPos(SCREEN_W/2 - 15, SCREEN_H - 100);
+    // 球尺寸改为50x50，半径25，居中偏移-25
+    m_ball->setPos(SCREEN_W/2 - 25, SCREEN_H - 100);
     m_scene->addItem(m_ball);
+
+    // 读取菜单保存的皮肤
+    int savedSkin = QSettings().value("ballSkin", 0).toInt();
+    m_ball->setSkin(savedSkin);
 
     m_coinSound = new QSoundEffect(this);
     m_coinSound->setSource(QUrl("qrc:/sounds/coin1.wav"));
@@ -96,6 +102,7 @@ gameview::gameview(QWidget *parent)
     m_gameTimer->start(16);
 
     m_gameTime.start();
+    m_totalTime = 150;
     setFocusPolicy(Qt::StrongFocus);
     setFocus();
     ui->gameview_2->setFocusPolicy(Qt::NoFocus);
@@ -137,7 +144,7 @@ void gameview::_init_platform_coin(){
 
     for (int y : yList)
     {
-        // 注意：这里加了空格 < qreal >，避免双小于号
+
         QList< qreal > availableX = {L, M, R};
         int count = QRandomGenerator::global()->bounded(1, 4);
 
@@ -159,13 +166,18 @@ void gameview::_init_platform_coin(){
             double itemRand = QRandomGenerator::global()->generateDouble();
             if (itemRand < 0.005) {
                 Magnet *m = new Magnet();
-                m->setPos(px + 50, y - 30);
+                m->setPos(px + 36, y - 50);
                 m_magnets.append(m);
                 m_scene->addItem(m);
             }
             else if (itemRand < 0.50) {
                 Coin *c = new Coin();
-                c->setPos(px + 50, y - 30);
+                int coinRand = QRandomGenerator::global()->bounded(10);
+                if(coinRand < 4) c->setCoinType(0);
+                else if(coinRand < 7) c->setCoinType(1);
+                else c->setCoinType(2);
+
+                c->setPos(px + 36, y - 50);
                 m_coins.append(c);
                 m_scene->addItem(c);
             }
@@ -176,10 +188,10 @@ void gameview::_init_platform_coin(){
 
 void gameview::gameUpdate()
 {
-    int remain = qMax(0, 150 - (int)(m_gameTime.elapsed()/1000));
+    int remain = qMax(0, m_totalTime - (int)(m_gameTime.elapsed()/1000));
     if(remain <= 5 && remain > 0){
         m_timeText->setDefaultTextColor(Qt::red);
-        m_timeText->setPlainText(QString("⚠️ DDL还有%1秒！").arg(remain));
+        m_timeText->setPlainText(QString("⚠️ DDL还有%1小时！").arg(remain));
     } else {
         m_timeText->setDefaultTextColor(Qt::white);
         m_timeText->setPlainText(QString("DDL倒计时: %1").arg(remain));
@@ -205,15 +217,16 @@ void gameview::gameUpdate()
 
     m_ball->updatePhysics();
 
+    // DDL追击警告
     qreal deadLineY = DEAD_LINE + SCREEN_H + 100;
     qreal distToDeadLine = deadLineY - m_ball->y();
     if (distToDeadLine < 150 && distToDeadLine > 0 && m_ball->getHp() > 0) {
-        if (m_ball->ballState() != Ball::StateScared) {
-            m_ball->setBallState(Ball::StateScared);
+        if (m_ball->currentState() != Ball::StateNervous) {
+            m_ball->setState(Ball::StateNervous);
         }
     } else if (distToDeadLine >= 150) {
-        if (m_ball->ballState() == Ball::StateScared) {
-            m_ball->setBallState(Ball::StateNormal);
+        if (m_ball->currentState() == Ball::StateNervous) {
+            m_ball->setState(Ball::StateNormal);
         }
     }
 
@@ -235,7 +248,7 @@ void gameview::gameUpdate()
 
             if(p->isSpike()){
                 m_ball->decreaseHp();
-                m_ball->setBallState(Ball::StateScared);
+                m_ball->setState(Ball::StateNervous);
                 p->resettype();
                 checkGameOver();
                 m_lastSavePlatform = p;
@@ -251,11 +264,11 @@ void gameview::gameUpdate()
         }
     }
 
-    // 注意：这里加了空格 < Magnet* >
     QList< Magnet* > magnetsToDelete;
     for (Magnet *m : m_magnets) {
         if (m_ball->collidesWithItem(m)) {
             m_isMagnetActive = true;
+            m_ball->increaseHp();
             m_magnetTimeLeft = 5;
             m_magnetText->setPlainText(QString("灵感爆发: 5s"));
             m_magnetTimer->start(1000);
@@ -291,7 +304,17 @@ void gameview::gameUpdate()
         }
 
         if (m_ball->collidesWithItem(c)) {
-            m_score += 10;
+            int type = c->coinType();
+
+            if (type == 0) {
+                m_score += 15;
+            } else if (type == 1) {
+                m_score += 10;
+            } else if (type == 2) {
+                m_score += 10;
+                m_totalTime += 3;
+            }
+
             if (m_coinSound) m_coinSound->play();
             m_scene->removeItem(c);
             coinsToDelete.append(c);
@@ -308,12 +331,13 @@ void gameview::gameUpdate()
 
         if(m_ball && m_ball->getHp() > 0){
             if(m_lastSavePlatform){
-                m_ball->setPos(m_lastSavePlatform->x() + 45, m_lastSavePlatform->y() - 30);
+                // 球宽50，平台宽120，居中偏移(120-50)/2=35
+                m_ball->setPos(m_lastSavePlatform->x() + 35, m_lastSavePlatform->y() - 30);
             } else {
-                m_ball->setPos(SCREEN_W / 2 - 15, 100);
+                m_ball->setPos(SCREEN_W / 2 - 25, 100);
             }
             m_ball->resetVelocity();
-            m_ball->setBallState(Ball::StateNormal);
+            m_ball->setState(Ball::StateNormal);
         }
     }
 
@@ -341,7 +365,6 @@ void gameview::spawnPlatform()
         const qreal M2 = (SCREEN_W / 3) * 2 - 60;
         const qreal R = SCREEN_W - 180;
 
-        // 注意：这里加了空格 < qreal >
         QList< qreal > availableX = {L, M1, M2, R};
         int count = QRandomGenerator::global()->bounded(1, 4);
 
@@ -369,13 +392,18 @@ void gameview::spawnPlatform()
             double itemRand = QRandomGenerator::global()->generateDouble();
             if (itemRand < 0.005) {
                 Magnet *m = new Magnet();
-                m->setPos(px + 50, minY - 180);
+                m->setPos(px + 36, minY - 200);
                 m_magnets.append(m);
                 m_scene->addItem(m);
             }
             else if (itemRand < 0.50) {
                 Coin *c = new Coin();
-                c->setPos(px + 50, minY - 180);
+                int coinRand = QRandomGenerator::global()->bounded(10);
+                if(coinRand < 4) c->setCoinType(0);
+                else if(coinRand < 7) c->setCoinType(1);
+                else c->setCoinType(2);
+
+                c->setPos(px + 36, minY - 200);
                 m_coins.append(c);
                 m_scene->addItem(c);
             }
@@ -415,7 +443,6 @@ void gameview::scrollScreen()
 }
 
 void gameview::removeOutOfScreenItems(){
-    // 注意：这里加了空格 < Platform* >
     QList< Platform* > delPlat;
     for (Platform* p : m_platforms) {
         if (p->y() > SCREEN_H) {
@@ -445,7 +472,6 @@ void gameview::removeOutOfScreenItems(){
         delete c;
     }
 
-    // 注意：这里加了空格 < Magnet* >
     QList< Magnet* > delMagnet;
     for (Magnet* m : m_magnets) {
         if (m->y() > SCREEN_H) {
@@ -469,6 +495,8 @@ void gameview::checkGameOver()
         if (m_bgmSound) {
             m_bgmSound->stop();
         }
+        // 精力耗尽，切换死亡表情
+        m_ball->setState(Ball::StateDead);
         QMessageBox::warning(this,"游戏结束","精力耗尽，被DDL吞噬了...");
         saveScore();
         emit backToMenu();

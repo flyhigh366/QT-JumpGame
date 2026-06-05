@@ -1,10 +1,13 @@
 #include "gamemenu.h"
 #include "gameview.h"
 #include <QApplication>
+#include <QSettings>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QCoreApplication::setOrganizationName("PKU");
+    QCoreApplication::setApplicationName("QTJumpGame");
     while (true)
     {
         Dialog menu;

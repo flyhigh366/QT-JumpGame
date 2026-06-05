@@ -43,6 +43,7 @@ private:
     int m_magnetTimeLeft;       // 剩余秒数
     QTimer *m_magnetTimer;      // 专属的倒计时器
     QGraphicsTextItem *m_magnetText; // UI 上显示磁铁倒计时
+    int m_totalTime;
 
 private:
     void keyPressEvent(QKeyEvent *event) override;

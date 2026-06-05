@@ -1,24 +1,46 @@
 #include "coin.h"
 #include <QBrush>
 #include <QColor>
+#include <QPixmap>
 
-Coin::Coin(QGraphicsItem *parent)
+Coin::Coin(QGraphicsItem *parent) : QGraphicsEllipseItem(parent)
 {
-    // 设置金币为一个20x20像素的圆形
-    setRect(0, 0, 20, 20);
+    setRect(0, 0, 48, 48);
+    setPen(Qt::NoPen);
+    m_coinType = 0;
+}
 
-    // 设置填充色为金色
-    setBrush(QBrush(QColor(241, 196, 15)));
+void Coin::setCoinType(int type)
+{
+    m_coinType = type;
+    QPixmap pix;
 
-    // 设置边框为1像素宽的黑色
-    setPen(QPen(Qt::black, 1));
+    switch(type) {
+    case 0: pix = QPixmap("coin_GPT.png"); break;
+    case 1: pix = QPixmap("coin_book.png"); break;
+    case 2: pix = QPixmap("coin_email.png"); break;
+    default: pix = QPixmap("coin_GPT.png"); break;
+    }
+
+    if(!pix.isNull()) {
+        pix = pix.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        setBrush(QBrush(pix));
+    } else {
+        // 加载失败时显示黄色
+        setBrush(QBrush(QColor(255, 255, 0)));
+    }
 }
 
 Magnet::Magnet(QGraphicsItem *parent) : QGraphicsRectItem(parent)
 {
-    // 设置磁铁为 20x20 的正方形
-    setRect(0, 0, 20, 20);
-    setBrush(QBrush(QColor(50, 150, 255))); // 科技蓝色
-    setPen(QPen(Qt::white, 2));             // 白色边框
-}
+    setRect(0, 0, 48, 48);
+    setPen(Qt::NoPen);
 
+    QPixmap pix("coin_coffee.png");
+    if(!pix.isNull()) {
+        pix = pix.scaled(48, 48, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        setBrush(QBrush(pix));
+    } else {
+        setBrush(QBrush(QColor(50, 150, 255))); // 加载失败回退蓝色
+    }
+}

@@ -4,5 +4,9 @@
         <file>button.png</file>
         <file>background2.png</file>
         <file>hover.png</file>
+        <file>coin_book.png</file>
+        <file>coin_coffee.png</file>
+        <file>coin_email.png</file>
+        <file>coin_GPT.png</file>
     </qresource>
 </RCC>

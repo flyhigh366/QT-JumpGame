@@ -2,17 +2,20 @@
 #include <QBrush>
 #include <QColor>
 #include <QGraphicsScene>
+#include <QPixmap>
 
 Ball::Ball(QGraphicsItem *parent) : QGraphicsEllipseItem(parent)
 {
-    setRect(0, 0, 30, 30);
-    setBrush(QColor(255, 50, 50));
+    setRect(0, 0, 50, 50);   // 显示尺寸50x50
     setPen(Qt::NoPen);
 
     m_vx = 0;
     m_vy = 0;
     m_hp = 3;
-    m_state = StateNormal;  // 初始状态：正常（新增）
+    m_skinId = 0;            // 默认dog
+    m_state = StateNormal;
+
+    loadSkinImage();         // 加载初始图片
 }
 
 void Ball::moveLeft()
@@ -58,6 +61,14 @@ void Ball::decreaseHp()
     m_hp--;
 }
 
+void Ball::increaseHp()
+{
+    const int MAX_HP = 3;
+    if (m_hp < MAX_HP) {
+        m_hp++;
+    }
+}
+
 int Ball::getHp() const
 {
     return m_hp;
@@ -74,25 +85,54 @@ qreal Ball::vy() const
     return m_vy;
 }
 
-// ===== 任务6：状态切换实现（新增） =====
-void Ball::setBallState(BallState state)
+// ===== 皮肤系统实现 =====
+void Ball::setSkin(int skinId)
 {
-    m_state = state;
-    switch(state) {
-    case StateNormal:
-        setBrush(QColor(255, 50, 50));    // 红色 - 正常
-        break;
-    case StateScared:
-        setBrush(QColor(255, 200, 50));  // 黄色 - 惊恐
-        break;
-    case StateCool:
-        setBrush(QColor(50, 150, 255));  // 蓝色 - 淡定
-        break;
-    }
+    m_skinId = skinId;
+    loadSkinImage();
 }
 
-Ball::BallState Ball::ballState() const
+void Ball::setState(BallState state)
+{
+    if (m_state == state) return;  // 状态没变就不重载
+    m_state = state;
+    loadSkinImage();
+}
+
+Ball::BallState Ball::currentState() const
 {
     return m_state;
 }
-// =====================================
+
+void Ball::loadSkinImage()
+{
+    QString skinName;
+    switch(m_skinId) {
+    case 0: skinName = "dog"; break;
+    case 1: skinName = "cat"; break;
+    case 2: skinName = "panda"; break;
+    default: skinName = "dog"; break;
+    }
+
+    QString stateName;
+    switch(m_state) {
+    case StateNormal: stateName = "normal"; break;
+    case StateNervous: stateName = "nervous"; break;
+    case StateDead: stateName = "dead"; break;
+    }
+
+    QString fileName = QString("skin_%1_%2.png").arg(skinName).arg(stateName);
+    QPixmap pix(fileName);
+
+    if(!pix.isNull()) {
+        pix = pix.scaled(50, 50, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        setBrush(QBrush(pix));
+    } else {
+        // 加载失败回退颜色
+        switch(m_state) {
+        case StateNormal: setBrush(QBrush(QColor(255, 50, 50))); break;
+        case StateNervous: setBrush(QBrush(QColor(255, 200, 50))); break;
+        case StateDead: setBrush(QBrush(QColor(80, 80, 80))); break;
+        }
+    }
+}
