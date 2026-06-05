@@ -1,7 +1,7 @@
 #include "ball.h"
 #include <QBrush>
 #include <QColor>
-#include <QGraphicsScene> // 用于获取场景边界
+#include <QGraphicsScene>
 
 Ball::Ball(QGraphicsItem *parent) : QGraphicsEllipseItem(parent)
 {
@@ -12,6 +12,7 @@ Ball::Ball(QGraphicsItem *parent) : QGraphicsEllipseItem(parent)
     m_vx = 0;
     m_vy = 0;
     m_hp = 3;
+    m_state = StateNormal;  // 初始状态：正常（新增）
 }
 
 void Ball::moveLeft()
@@ -29,24 +30,17 @@ void Ball::stopMove()
     m_vx = 0;
 }
 
-// ==============================
-// 核心：匀减速上升 + 匀速下落
-// ==============================
 void Ball::updatePhysics()
 {
-    // 水平移动
     moveBy(m_vx, 0);
-
     moveBy(0, m_vy);
     m_vy += GRAVITY;
 
-    //限制最大下落速度
     if (m_vy > MAX_FALL_SPEED) {
         m_vy = MAX_FALL_SPEED;
     }
 
-    // 边界限制
-    qreal rightBound = 1000.0; // 如果加入了场景，可以用 scene()->width() 替代
+    qreal rightBound = 1000.0;
     if (x() < 0) {
         setX(0);
     } else if (x() > rightBound - boundingRect().width()) {
@@ -54,10 +48,8 @@ void Ball::updatePhysics()
     }
 }
 
-// 跳跃：初始向上速度（刚好跳150高度）
 void Ball::jump(qreal bounceMultiplier)
 {
-    // 如果是双倍弹跳，bounceMultiplier 传 1.5 或 2.0
     m_vy = JUMP_VELOCITY * bounceMultiplier;
 }
 
@@ -81,3 +73,26 @@ qreal Ball::vy() const
 {
     return m_vy;
 }
+
+// ===== 任务6：状态切换实现（新增） =====
+void Ball::setBallState(BallState state)
+{
+    m_state = state;
+    switch(state) {
+    case StateNormal:
+        setBrush(QColor(255, 50, 50));    // 红色 - 正常
+        break;
+    case StateScared:
+        setBrush(QColor(255, 200, 50));  // 黄色 - 惊恐
+        break;
+    case StateCool:
+        setBrush(QColor(50, 150, 255));  // 蓝色 - 淡定
+        break;
+    }
+}
+
+Ball::BallState Ball::ballState() const
+{
+    return m_state;
+}
+// =====================================
