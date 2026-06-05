@@ -1,5 +1,7 @@
 #include "gamemenu.h"
 #include "ui_gamemenu.h"
+#include "leaderboard.h"
+
 #include<QFile>
 #include<QDebug>
 #include <QApplication>
@@ -21,13 +23,12 @@ void Dialog:: Showme(){
     show();
 }
 
-
-
-
-
-
-
-
-
-
+void Dialog::on_button_scoresheet_clicked()
+{
+    Leaderboard lb;
+    int ret = lb.exec();
+    if (ret == QDialog::Accepted) {
+        this->accept();
+    }
+}
 

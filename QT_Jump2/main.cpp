@@ -19,10 +19,9 @@ int main(int argc, char *argv[])
         else if(ret ==QDialog::Accepted){
         gameview w;
         // 游戏返回 → 关闭游戏窗口，循环回到菜单
-        QObject::connect(&w, &gameview::backToMenu, &w, &gameview::close);
+        QObject::connect(&w, &gameview::backToMenu, &w, &gameview::reject);
 
-        w.show();
-        a.exec(); // 游戏运行时的事件循环
+        w.exec(); // 游戏运行时的事件循环
         }
 
     }

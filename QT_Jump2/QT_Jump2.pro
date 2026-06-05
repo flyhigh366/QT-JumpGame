@@ -1,3 +1,4 @@
+QT += core gui multimedia
 QT += core gui widgets
 
 CONFIG += c++17
@@ -11,6 +12,7 @@ SOURCES += \
     coin.cpp \
     gamemenu.cpp \
     gameview.cpp \
+    leaderboard.cpp \
     main.cpp \
     platform.cpp
 
@@ -19,6 +21,7 @@ HEADERS += \
     coin.h \
     gamemenu.h \
     gameview.h \
+    leaderboard.h \
     platform.h
 
 FORMS += \
@@ -31,4 +34,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    res.qrc
+    res.qrc \
+    resourcesxingjiayin.qrc
