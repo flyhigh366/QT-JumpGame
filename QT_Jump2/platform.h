@@ -1,10 +1,9 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
-#include <QBrush>
-#include <QGraphicsRectItem>
-
-class Platform : public QGraphicsRectItem
+#include <QGraphicsPixmapItem> // 替换原来的 QGraphicsRectItem 和 QBrush
+#include <QPixmap>
+class Platform : public QGraphicsPixmapItem
 {
 public:
     explicit Platform();

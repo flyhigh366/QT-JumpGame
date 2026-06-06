@@ -8,25 +8,33 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    achievements.cpp \
     ball.cpp \
     coin.cpp \
     gamemenu.cpp \
     gameview.cpp \
     leaderboard.cpp \
+    magnet.cpp \
     main.cpp \
-    platform.cpp
+    platform.cpp \
+    setboard.cpp
 
 HEADERS += \
+    achievements.h \
     ball.h \
     coin.h \
     gamemenu.h \
     gameview.h \
     leaderboard.h \
-    platform.h
+    magnet.h \
+    platform.h \
+    setboard.h
 
 FORMS += \
+    achievements.ui \
     gamemenu.ui \
-    gameview.ui
+    gameview.ui \
+    setboard.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,8 +1,33 @@
 <RCC>
     <qresource prefix="/new/prefix2">
-        <file>background.jpg</file>
         <file>button.png</file>
-        <file>background2.png</file>
         <file>hover.png</file>
+        <file>ball_nervous.png</file>
+        <file>ball_dead.png</file>
+        <file>plat_normal.png</file>
+        <file>plat_super.png</file>
+        <file>plat_spike.png</file>
+        <file>ball_normal.png</file>
+        <file>coin.png</file>
+        <file>magnet.png</file>
+        <file>bck.png</file>
+        <file>plat_fragile.png</file>
+        <file>gamename.png</file>
+        <file>coin_book.png</file>
+        <file>coin_coffee.png</file>
+        <file>coin_email.png</file>
+        <file>coin_GPT.png</file>
+        <file>cat_dead.png</file>
+        <file>cat_nervous.png</file>
+        <file>cat_normal.png</file>
+        <file>dog_dead.png</file>
+        <file>dog_nervous.png</file>
+        <file>dog_normal.png</file>
+        <file>panda_dead.png</file>
+        <file>panda_nervous.png</file>
+        <file>panda_normal.png</file>
+        <file>background.png</file>
+        <file>background2.png</file>
+        <file>background3.png</file>
     </qresource>
 </RCC>

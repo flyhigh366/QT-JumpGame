@@ -2,5 +2,13 @@
     <qresource prefix="/">
         <file>sounds/coin1.wav</file>
         <file>sounds/song1.wav</file>
+        <file>../../../sound/song1.mp3</file>
+        <file>sounds/achievement1.wav</file>
+        <file>sounds/gameover.wav</file>
+        <file>sounds/win1.wav</file>
+        <file>sounds/diaoxue.wav</file>
+        <file>sounds/click.wav</file>
+        <file>sounds/coin2.wav</file>
+        <file>sounds/coin3.wav</file>
     </qresource>
 </RCC>

@@ -4,24 +4,27 @@
 #include <QObject>
 #include <QPen>
 #include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
 #include <QGraphicsRectItem>
-class Coin: public QGraphicsEllipseItem
+class Coin: public QGraphicsPixmapItem
 {
 public:
+    enum CoinType {
+        GPT,
+        MATH_BOOK,
+        EMAIL
+    };
     explicit Coin(QGraphicsItem *parent = nullptr);
 
     enum {Type = UserType + 3};
     int type() const {return Type;}
 
+    CoinType getCoinType() const { return m_coinType; }
+private:
+    CoinType m_coinType;
+
 signals:
 };
 
-class Magnet : public QGraphicsRectItem
-{
-public:
-    explicit Magnet(QGraphicsItem *parent = nullptr);
 
-    enum { Type = UserType + 4 };
-    int type() const override { return Type; }
-};
 #endif // COIN_H

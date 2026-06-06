@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>635</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>1000</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>635</width>
-    <height>16777215</height>
+    <width>1000</width>
+    <height>1000</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -21,104 +21,78 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog{
-    background-image:url(:/new/prefix2/background.jpg);
+    background-image:url(:/new/prefix2/background.png) 0 0 0 0 stretch stretch;
     background-size:100% 100%;
     background-repeat:no-repeat;
 }</string>
   </property>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>30</y>
-     <width>621</width>
-     <height>86</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>新宋体</family>
-     <pointsize>70</pointsize>
-     <italic>false</italic>
-     <bold>false</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:rgb(116, 123, 255);
-font: 70pt &quot;新宋体&quot;;</string>
-   </property>
-   <property name="text">
-    <string>跳一跳小游戏</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="button_scoresheet">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>220</y>
-     <width>171</width>
-     <height>91</height>
+     <x>760</x>
+     <y>350</y>
+     <width>200</width>
+     <height>66</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>25</pointsize>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{
-	border:none;
-    background:url(:/new/prefix2/button.png) ;
-	border-radius:25px;
-  color:rgb(128, 111, 255)
+    min-width:155px;
+    min-height:62px;
+    border-radius:18px;
+    border:2px solid #b285e6; /*淡紫描边*/
+    background:rgba(165,228,255,55); /*半透冰蓝磨砂，透出背景城堡*/
+    color:#2c2057;
+    font: bold 19px;
 }
-QPushButton:hover {
-     border:none;
-    background:url(:/new/prefix2/hover.png);
-	border-radius:25px;
-}
-QPushButton:pressed{
-   border:none;
-    background:url(:/new/prefix2/button.png) ;
-	border-radius:25px;
-
+/*悬浮发光：紫+金色光晕 */
+QPushButton:hover{
+    background:rgba(185,238,255,75);
+    box-shadow:0 0 13px #d8b4ff,0 0 23px #ffddb0;
 }</string>
    </property>
    <property name="text">
-    <string>游戏记录</string>
+    <string>排行榜</string>
    </property>
   </widget>
   <widget class="QPushButton" name="button_end">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>220</y>
-     <width>191</width>
-     <height>91</height>
+     <x>420</x>
+     <y>300</y>
+     <width>259</width>
+     <height>109</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>25</pointsize>
+     <family>Microsoft YaHei</family>
+     <pointsize>40</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{
-	border:none;
-    background:url(:/new/prefix2/button.png) ;
-	border-radius:25px;
-  color:rgb(128, 111, 255)
+    min-width:255px;
+    min-height:105px;
+    border-radius:18px;
+    border:2px solid #b285e6; /*淡紫描边*/
+    background:rgba(165,228,255,55); /*半透冰蓝磨砂，透出背景城堡*/
+    color:#2c2057;
+   
 }
-QPushButton:hover {
-     border:none;
-    background:url(:/new/prefix2/hover.png);
-	border-radius:25px;
-}
-QPushButton:pressed{
-   border:none;
-    background:url(:/new/prefix2/button.png) ;
-	border-radius:25px;
-
+/*悬浮发光：紫+金色光晕 */
+QPushButton:hover{
+    background:rgba(185,238,255,75);
+    box-shadow:0 0 13px #d8b4ff,0 0 23px #ffddb0;
 }</string>
    </property>
    <property name="text">
@@ -128,45 +102,348 @@ QPushButton:pressed{
   <widget class="QPushButton" name="button_begin">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>220</y>
-     <width>201</width>
-     <height>91</height>
+     <x>80</x>
+     <y>300</y>
+     <width>259</width>
+     <height>109</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>25</pointsize>
+     <family>Microsoft YaHei</family>
+     <pointsize>40</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
     </font>
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton{
-	border:none;
-    background:url(:/new/prefix2/button.png) ;
-	border-radius:25px;
-    color:rgb(128, 111, 255)
-     
+    min-width:255px;
+    min-height:105px;
+    border-radius:18px;
+    border:2px solid #b285e6; /*淡紫描边*/
+    background:rgba(165,228,255,55); /*半透冰蓝磨砂，透出背景城堡*/
+    color:#2c2057;
+   
 }
-QPushButton:hover {
-     border:none;
-    background:url(:/new/prefix2/hover.png);
-	border-radius:25px;
-}
-QPushButton:pressed{
-   border:none;
-    background:url(:/new/prefix2/button.png) ;
-	border-radius:25px;
-
+/*悬浮发光：紫+金色光晕 */
+QPushButton:hover{
+    background:rgba(185,238,255,75);
+    box-shadow:0 0 13px #d8b4ff,0 0 23px #ffddb0;
 }</string>
    </property>
    <property name="text">
     <string>开始游戏</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>280</y>
+     <width>200</width>
+     <height>66</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    min-width:155px;
+    min-height:62px;
+    border-radius:18px;
+    border:2px solid #b285e6; /*淡紫描边*/
+    background:rgba(165,228,255,55); /*半透冰蓝磨砂，透出背景城堡*/
+    color:#2c2057;
+    font: bold 19px;
+}
+/*悬浮发光：紫+金色光晕 */
+QPushButton:hover{
+    background:rgba(185,238,255,75);
+    box-shadow:0 0 13px #d8b4ff,0 0 23px #ffddb0;
+
+
+}</string>
+   </property>
+   <property name="text">
+    <string>设置</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_skinDefault">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>920</y>
+     <width>190</width>
+     <height>66</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border: 2px solid #b285e6;
+    border-radius: 18px;
+    min-width: 155px;
+    min-height: 62px;
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #7996dd,stop:0.3 #9483d1,stop:0.6 #bb82bc,stop:1 #c992a5);
+    color: #2c2057;
+    font: bold 19px;
+    padding: 0px; /* 为按压效果做准备 */
+}
+
+/* 鼠标悬浮效果 (Hover) - 提亮发光 */
+QPushButton:hover {
+    /* 1. 边框变成高亮的淡紫色，模拟发光 */
+    border: 3px solid #d8b4ff; 
+    
+    /* 2. 背景渐变整体调亮一个色阶，产生被点亮的感觉 */
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #8faaf0,stop:0.3 #a998e6,stop:0.6 #d498d5,stop:1 #e0a7ba);
+    
+    /* 3. 字体变成纯白，增加对比度 */
+    color: #ffffff; 
+}
+
+/* 鼠标按下效果 (Pressed) - 物理下压反馈 */
+QPushButton:pressed {
+    /* 背景变暗，模拟背光被手遮挡 */
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #6885cc,stop:0.3 #8372c0,stop:0.6 #aa71ab,stop:1 #b88194);
+    
+    /* 核心物理感：利用 padding 把文字往下挤，产生凹陷错觉 */
+    padding-top: 4px;
+    padding-bottom: -4px;
+    border: 2px solid #b285e6; /* 边框恢复正常 */
+}</string>
+   </property>
+   <property name="text">
+    <string>🏐坚强期末周小球</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_skinDog">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>920</y>
+     <width>190</width>
+     <height>66</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border: 2px solid #b285e6;
+    border-radius: 18px;
+    min-width: 155px;
+    min-height: 62px;
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #7996dd,stop:0.3 #9483d1,stop:0.6 #bb82bc,stop:1 #c992a5);
+    color: #2c2057;
+    font: bold 19px;
+    padding: 0px; /* 为按压效果做准备 */
+}
+
+/* 鼠标悬浮效果 (Hover) - 提亮发光 */
+QPushButton:hover {
+    /* 1. 边框变成高亮的淡紫色，模拟发光 */
+    border: 3px solid #d8b4ff; 
+    
+    /* 2. 背景渐变整体调亮一个色阶，产生被点亮的感觉 */
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #8faaf0,stop:0.3 #a998e6,stop:0.6 #d498d5,stop:1 #e0a7ba);
+    
+    /* 3. 字体变成纯白，增加对比度 */
+    color: #ffffff; 
+}
+
+/* 鼠标按下效果 (Pressed) - 物理下压反馈 */
+QPushButton:pressed {
+    /* 背景变暗，模拟背光被手遮挡 */
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #6885cc,stop:0.3 #8372c0,stop:0.6 #aa71ab,stop:1 #b88194);
+    
+    /* 核心物理感：利用 padding 把文字往下挤，产生凹陷错觉 */
+    padding-top: 4px;
+    padding-bottom: -4px;
+    border: 2px solid #b285e6; /* 边框恢复正常 */
+}</string>
+   </property>
+   <property name="text">
+    <string>🐶 DDL战士小狗</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_skinCat">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>920</y>
+     <width>190</width>
+     <height>66</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border: 2px solid #b285e6;
+    border-radius: 18px;
+    min-width: 155px;
+    min-height: 62px;
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #7996dd,stop:0.3 #9483d1,stop:0.6 #bb82bc,stop:1 #c992a5);
+    color: #2c2057;
+    font: bold 19px;
+    padding: 0px; /* 为按压效果做准备 */
+}
+
+/* 鼠标悬浮效果 (Hover) - 提亮发光 */
+QPushButton:hover {
+    /* 1. 边框变成高亮的淡紫色，模拟发光 */
+    border: 3px solid #d8b4ff; 
+    
+    /* 2. 背景渐变整体调亮一个色阶，产生被点亮的感觉 */
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #8faaf0,stop:0.3 #a998e6,stop:0.6 #d498d5,stop:1 #e0a7ba);
+    
+    /* 3. 字体变成纯白，增加对比度 */
+    color: #ffffff; 
+}
+
+/* 鼠标按下效果 (Pressed) - 物理下压反馈 */
+QPushButton:pressed {
+    /* 背景变暗，模拟背光被手遮挡 */
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #6885cc,stop:0.3 #8372c0,stop:0.6 #aa71ab,stop:1 #b88194);
+    
+    /* 核心物理感：利用 padding 把文字往下挤，产生凹陷错觉 */
+    padding-top: 4px;
+    padding-bottom: -4px;
+    border: 2px solid #b285e6; /* 边框恢复正常 */
+}</string>
+   </property>
+   <property name="text">
+    <string>🐱 平静卷王猫</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_skinPanda">
+   <property name="geometry">
+    <rect>
+     <x>740</x>
+     <y>920</y>
+     <width>190</width>
+     <height>66</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    border: 2px solid #b285e6;
+    border-radius: 18px;
+    min-width: 155px;
+    min-height: 62px;
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #7996dd,stop:0.3 #9483d1,stop:0.6 #bb82bc,stop:1 #c992a5);
+    color: #2c2057;
+    font: bold 19px;
+    padding: 0px; /* 为按压效果做准备 */
+}
+
+/* 鼠标悬浮效果 (Hover) - 提亮发光 */
+QPushButton:hover {
+    /* 1. 边框变成高亮的淡紫色，模拟发光 */
+    border: 3px solid #d8b4ff; 
+    
+    /* 2. 背景渐变整体调亮一个色阶，产生被点亮的感觉 */
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #8faaf0,stop:0.3 #a998e6,stop:0.6 #d498d5,stop:1 #e0a7ba);
+    
+    /* 3. 字体变成纯白，增加对比度 */
+    color: #ffffff; 
+}
+
+/* 鼠标按下效果 (Pressed) - 物理下压反馈 */
+QPushButton:pressed {
+    /* 背景变暗，模拟背光被手遮挡 */
+    background: qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #6885cc,stop:0.3 #8372c0,stop:0.6 #aa71ab,stop:1 #b88194);
+    
+    /* 核心物理感：利用 padding 把文字往下挤，产生凹陷错觉 */
+    padding-top: 4px;
+    padding-bottom: -4px;
+    border: 2px solid #b285e6; /* 边框恢复正常 */
+}</string>
+   </property>
+   <property name="text">
+    <string>🐼 苦命早八熊猫</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_achievements">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>420</y>
+     <width>200</width>
+     <height>66</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    min-width:155px;
+    min-height:62px;
+    border-radius:18px;
+    border:2px solid #b285e6; /*淡紫描边*/
+    background:rgba(165,228,255,55); /*半透冰蓝磨砂，透出背景城堡*/
+    color:#2c2057;
+    font: bold 19px;
+}
+/*悬浮发光：紫+金色光晕 */
+QPushButton:hover{
+    background:rgba(185,238,255,75);
+    box-shadow:0 0 13px #d8b4ff,0 0 23px #ffddb0;
+}</string>
+   </property>
+   <property name="text">
+    <string>成就</string>
+   </property>
+  </widget>
   <zorder>button_end</zorder>
-  <zorder>lineEdit</zorder>
   <zorder>button_begin</zorder>
   <zorder>button_scoresheet</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>btn_skinDefault</zorder>
+  <zorder>btn_skinDog</zorder>
+  <zorder>btn_skinCat</zorder>
+  <zorder>btn_skinPanda</zorder>
+  <zorder>btn_achievements</zorder>
  </widget>
  <resources/>
  <connections>
@@ -177,8 +454,8 @@ QPushButton:pressed{
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>342</x>
-     <y>278</y>
+     <x>372</x>
+     <y>497</y>
     </hint>
     <hint type="destinationlabel">
      <x>288</x>
@@ -193,8 +470,8 @@ QPushButton:pressed{
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>97</x>
-     <y>263</y>
+     <x>107</x>
+     <y>482</y>
     </hint>
     <hint type="destinationlabel">
      <x>99</x>

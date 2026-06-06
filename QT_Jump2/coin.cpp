@@ -1,24 +1,30 @@
 #include "coin.h"
 #include <QBrush>
 #include <QColor>
+#include <QRandomGenerator>
 
 Coin::Coin(QGraphicsItem *parent)
 {
-    // 设置金币为一个20x20像素的圆形
-    setRect(0, 0, 20, 20);
+    // 生成 0 到 99 的随机数，用于 4:3:3 的概率分配
+    int randVal = QRandomGenerator::global()->bounded(100);
+    QString imagePath;
 
-    // 设置填充色为金色
-    setBrush(QBrush(QColor(241, 196, 15)));
+    if (randVal < 40) {
+        m_coinType = GPT;
+        imagePath = ":/new/prefix2/coin_GPT.png";        // GPT 图片
+    } else if (randVal < 70) {
+        m_coinType = MATH_BOOK;
+        imagePath = ":/new/prefix2/coin_book.png";   // 高数书图片
+    } else {
+        m_coinType = EMAIL;
+        imagePath = ":/new/prefix2/coin_email.png";      // 邮件图片
+    }
 
-    // 设置边框为1像素宽的黑色
-    setPen(QPen(Qt::black, 1));
+    QPixmap pix(imagePath);
+    if (!pix.isNull()) {
+        setPixmap(pix.scaled(40, 40, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
+    }
 }
 
-Magnet::Magnet(QGraphicsItem *parent) : QGraphicsRectItem(parent)
-{
-    // 设置磁铁为 20x20 的正方形
-    setRect(0, 0, 20, 20);
-    setBrush(QBrush(QColor(50, 150, 255))); // 科技蓝色
-    setPen(QPen(Qt::white, 2));             // 白色边框
-}
+
 

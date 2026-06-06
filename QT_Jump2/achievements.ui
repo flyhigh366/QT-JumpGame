@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>achievements</class>
+ <widget class="QDialog" name="achievements">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>1000</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/new/prefix2/bck.png);</string>
+  </property>
+  <widget class="QPushButton" name="btn_achievements1">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>70</y>
+     <width>371</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* 全局样式表，添加到窗体/主窗口stylesheet */
+QPushButton{
+    background: white;
+    border:1px solid #ddd;
+border-radius:10px;
+}
+QPushButton:hover{background:#f8f8f8;}
+QPushButton:pressed{background:#efefef;}
+</string>
+   </property>
+   <property name="text">
+    <string>满绩卷王 (4.0 GPA）</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_back">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>20</y>
+     <width>351</width>
+     <height>109</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>30</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    min-width:255px;
+    min-height:105px;
+    border-radius:18px;
+    border:2px solid #b285e6; /*淡紫描边*/
+    background:rgba(165,228,255,55); /*半透冰蓝磨砂，透出背景城堡*/
+    color:#2c2057;
+   
+}
+/*悬浮发光：紫+金色光晕 */
+QPushButton:hover{
+    background:rgba(185,238,255,75);
+    box-shadow:0 0 13px #d8b4ff,0 0 23px #ffddb0;
+}</string>
+   </property>
+   <property name="text">
+    <string>Back  to menu</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_achievements2">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>250</y>
+     <width>371</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    background-color: #89FF96;
+    border:1px solid #39E04E;
+   
+ border-radius:18px;
+    box-shadow: 0 0 10px #32E648;
+    color:#003300;
+}
+QPushButton:hover{
+    background-color: #A7FFB2;
+    box-shadow: 0 0 16px #26F042;
+    color:#001A00;
+}
+QPushButton:pressed{
+    background-color: #63E873;
+    box-shadow: 0 0 6px #18CC30;
+    color:#000000;
+}</string>
+   </property>
+   <property name="text">
+    <string>灵感枯竭 (Null Pointer)</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_start">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>180</y>
+     <width>341</width>
+     <height>109</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>30</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    min-width:255px;
+    min-height:105px;
+    border-radius:18px;
+    border:2px solid #b285e6; /*淡紫描边*/
+    background:rgba(165,228,255,55); /*半透冰蓝磨砂，透出背景城堡*/
+    color:#2c2057;
+   
+}
+/*悬浮发光：紫+金色光晕 */
+QPushButton:hover{
+    background:rgba(185,238,255,75);
+    box-shadow:0 0 13px #d8b4ff,0 0 23px #ffddb0;
+}</string>
+   </property>
+   <property name="text">
+    <string>Start</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_achievements3">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>350</y>
+     <width>371</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* 全局样式表，添加到窗体/主窗口stylesheet */
+QPushButton{
+    background: white;
+    border:1px solid #ddd;
+border-radius:10px;
+}
+QPushButton:hover{background:#f8f8f8;}
+QPushButton:pressed{background:#efefef;}</string>
+   </property>
+   <property name="text">
+    <string>超时 (Time Limit Exceeded)</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_achievements4">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>440</y>
+     <width>371</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* 全局样式表，添加到窗体/主窗口stylesheet */
+QPushButton{
+    background: white;
+    border:1px solid #ddd;
+border-radius:10px;
+}
+QPushButton:hover{background:#f8f8f8;}
+QPushButton:pressed{background:#efefef;}</string>
+   </property>
+   <property name="text">
+    <string>段错误 (Segmentation Fault)</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>70</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>30</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{
+    color:#f3eeff;
+    font-weight:bold;
+}</string>
+   </property>
+   <property name="text">
+    <string>高分成就</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>250</y>
+     <width>161</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>30</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{
+    color:#f3eeff;
+    font-weight:bold;
+}</string>
+   </property>
+   <property name="text">
+    <string>零分</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>350</y>
+     <width>161</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>30</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{
+    color:#f3eeff;
+    font-weight:bold;
+}</string>
+   </property>
+   <property name="text">
+    <string>死法</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_achievements1_2">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>160</y>
+     <width>371</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    background-color: #89FF96;
+    border:1px solid #39E04E;
+   
+ border-radius:18px;
+    box-shadow: 0 0 10px #32E648;
+    color:#003300;
+}
+QPushButton:hover{
+    background-color: #A7FFB2;
+    box-shadow: 0 0 16px #26F042;
+    color:#001A00;
+}
+QPushButton:pressed{
+    background-color: #63E873;
+    box-shadow: 0 0 6px #18CC30;
+    color:#000000;
+}</string>
+   </property>
+   <property name="text">
+    <string>一遍过 (Accepted)</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_achievements4_2">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>530</y>
+     <width>361</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* 全局样式表，添加到窗体/主窗口stylesheet */
+QPushButton{
+    background: white;
+    border:1px solid #ddd;
+}
+QPushButton:hover{background:#f8f8f8;}
+QPushButton:pressed{background:#efefef;}</string>
+   </property>
+   <property name="text">
+    <string>栈溢出 (Stack Overflow)</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

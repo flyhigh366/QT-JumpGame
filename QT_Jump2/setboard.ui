@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>setboard</class>
+ <widget class="QDialog" name="setboard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>1000</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>20</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/new/prefix2/bck.png);</string>
+  </property>
+  <widget class="QSpinBox" name="spinHp">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>230</y>
+     <width>161</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinTime">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>330</y>
+     <width>161</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>250</y>
+     <width>101</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{
+    color:#f3eeff;
+    font-weight:bold;
+}</string>
+   </property>
+   <property name="text">
+    <string>精力值：</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>350</y>
+     <width>91</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel{
+    color:#f3eeff;
+    font-weight:bold;
+}</string>
+   </property>
+   <property name="text">
+    <string>时间限制：</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnStart">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>123</y>
+     <width>361</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>35</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    min-width:155px;
+    min-height:62px;
+    border-radius:18px;
+    border:1px solid #9d7fc9;
+    background:rgba(90,130,180,40);
+    color:#e9e4f8;
+
+}
+QPushButton:hover{
+    background:rgba(110,155,205,60);
+    box-shadow:0 0 20px #b998e8;
+}
+#btnRank{
+    background:qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #5c7ec2,stop:0.3 #826ebb,stop:0.6 #a86fa9,stop:1 #b97e8e);
+}</string>
+   </property>
+   <property name="text">
+    <string>保存并开始游戏</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnReturn">
+   <property name="geometry">
+    <rect>
+     <x>580</x>
+     <y>253</y>
+     <width>361</width>
+     <height>100</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>35</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+    min-width:155px;
+    min-height:62px;
+    border-radius:18px;
+    border:1px solid #9d7fc9;
+    background:rgba(90,130,180,40);
+    color:#e9e4f8;
+    
+}
+QPushButton:hover{
+    background:rgba(110,155,205,60);
+    box-shadow:0 0 20px #b998e8;
+}
+#btnRank{
+    background:qlineargradient(x1:0,y1:0,x2:1,y2:0,
+    stop:0 #5c7ec2,stop:0.3 #826ebb,stop:0.6 #a86fa9,stop:1 #b97e8e);
+}</string>
+   </property>
+   <property name="text">
+    <string>返回主菜单</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

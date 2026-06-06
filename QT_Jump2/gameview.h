@@ -12,6 +12,7 @@
 
 #include "ball.h"
 #include "platform.h"
+#include "magnet.h"
 #include "coin.h"
 namespace Ui {
 class gameview;
@@ -22,7 +23,8 @@ class gameview : public QDialog
     Q_OBJECT
 
 public:
-    explicit gameview(QWidget *parent = nullptr);
+    // gameview.h 构造函数声明加上 skin：
+    explicit gameview(QWidget *parent = nullptr, int hp = 3, int time = 150, int skin = 0);
     ~gameview();
 
 signals:
@@ -80,7 +82,29 @@ private:
 private:
     QSoundEffect *m_coinSound; // 金币音效
     QSoundEffect *m_bgmSound; // 背景音乐
+    void showStoryPopup(QString title, QString story, int themeType);
+    QSoundEffect *m_winSound;  // 胜利音效
+    QSoundEffect *m_loseSound; // 失败/死亡音效
+    QSoundEffect *m_achSound;  // 解锁成就音效
 
+    QSoundEffect *m_hurtSound; // 受伤音效
+
+    // 新增：在指定坐标播放“飘字”动画的函数
+    void showDamageEffect(qreal x, qreal y);
+
+private:
+    void unlockAchievement(QString key, QString name);
+    void checkDeathAchievements(QString deathType);
+    void checkAchievementsAtEnd();
+    int m_totalTime;  // 保存总游戏时长(秒)
+
+private:
+    // --- 新增：为了实现暂停和重新开局 ---
+    void pauseGame();   // 暂停游戏及弹窗逻辑
+    void restartGame(); // 重新开局逻辑
+
+    int m_initialHp;    // 记住开局设定的精力
+    int m_initialTime;  // 记住开局设定的时间
 };
 
 #endif // GAMEVIEW_H
